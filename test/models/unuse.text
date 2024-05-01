@@ -1,0 +1,55 @@
+ # for backed date and time
+    # @api.model
+    # def create(self, vals):
+    #     if 'date_order' in vals:
+    #         date_order = fields.Datetime.from_string(vals['date_order'])
+    #         current_datetime = datetime.now()
+    #         if date_order < current_datetime:
+    #             raise UserError("You cannot create a backdated order.")
+    #     return super(SaleOrder, self).create(vals)
+
+
+
+    from odoo import fields, models, api
+from odoo.exceptions import UserError
+from datetime import datetime, timedelta
+
+
+class SaleOrder(models.Model):
+    _inherit = 'sale.order'
+
+    # for backed date
+    @api.model
+    def create(self, vals):
+        if 'date_order' in vals:
+            date_order = fields.Datetime.from_string(vals['date_order']).date()
+            current_date = datetime.now().date()
+            if date_order < current_date:
+                raise UserError("You cannot create a backdated order.")
+
+        return super(SaleOrder, self).create(vals)
+
+
+
+
+        working
+
+
+
+        from odoo import fields, models, api
+from odoo.exceptions import UserError
+from datetime import datetime, timedelta
+
+
+class SaleOrder(models.Model):
+    _inherit = 'sale.order'
+
+    # for backed date
+    @api.model
+    def create(self, vals):
+        if 'date_order' in vals:
+            date_order = fields.Datetime.from_string(vals['date_order']).date()
+            current_date = datetime.now().date()
+            if date_order < current_date:
+                raise UserError("You cannot create a backdated order.")
+        return super(SaleOrder, self).create(vals)

@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Form View -->
+    <record id="test_test_form_view" model="ir.ui.view">
+        <field name="name">test.test.form.view</field>
+        <field name="model">test.test</field>
+        <field name="arch" type="xml">
+            <form>
+
+                <sheet>
+                    <group>
+                         <group>
+                        <field name="name"/>
+                             </group>
+                        <group>
+                            <span>
+                                <b>Address</b>
+                            </span>
+                            <div class="o_address_format">
+
+                                <field name="address_street" string="street"/>
+                                <group>
+                                    <field name="address_building" string="building"/>
+                                    <field name="address_floor_room" string="floor/room"/>
+                                </group>
+                                <group>
+                                    <field name="address_street2" string="street2"/>
+                                    <field name="address_city" string="city"/>
+                                    <field name="address_zip" string="zip"/>
+                                </group>
+                                <group>
+                                    <field name="address_phone" string="phone"/>
+                                    <field name="address_email" string="email"/>
+                                    <field name="state_id" string="state"/>
+                                    <field name="county_id" string="countyr"/>
+                                </group>
+                            </div>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Tree View -->
+    <record id="test_test_tree_view" model="ir.ui.view">
+        <field name="name">test.test.tree.view</field>
+        <field name="model">test.test</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="address_street"/>
+                <field name="address_building"/>
+                <field name="address_floor_room"/>
+                <field name="address_street2"/>
+                <field name="address_city"/>
+                <field name="address_zip"/>
+                <field name="address_phone"/>
+                <field name="address_email"/>
+                <field name="state_id"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Action Window -->
+    <record id="manufacture_menu" model="ir.actions.act_window">
+        <field name="name">Manufacturer</field>
+        <field name="res_model">test.test</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- Menu Item -->
+    <menuitem id="menu_manufacture_menu_inherit"
+              name="Manufacturer"
+              parent="purchase.menu_procurement_management"
+              action="manufacture_menu"
+    />
+</odoo>

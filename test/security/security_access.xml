@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="manufacture_employee_group_category" model="ir.module.category">
+        <field name="name">Manufacture</field>
+    </record>
+
+    <record id="manufacture_employee_group_user" model="res.groups">
+        <field name="name">User</field>
+        <field name="category_id" ref="test.manufacture_employee_group_category"/>
+    </record>
+
+    <record id="manufacture_employee_group_admin" model="res.groups">
+        <field name="name">Administrator</field>
+        <field name="implied_ids" eval="[(4, ref('test.manufacture_employee_group_user'))]"/>
+        <field name="category_id" ref="test.manufacture_employee_group_category"/>
+        <field name="users" eval="[(4, ref('base.user_root')), (4, ref('base.user_admin'))]"/>
+    </record>
+
+
+    <record id="manufacture_employee_basic_rule" model="ir.model.access">
+        <field name="name">End user permission</field>
+        <field name="group_id" ref="test.manufacture_employee_group_user"/>
+        <field name="perm_create">0</field>
+        <field name="perm_write">0</field>
+        <field name="perm_read">1</field>
+        <field name="perm_unlink">0</field>
+        <field name="model_id" ref="model_test_test"/>
+    </record>
+
+    <record id="manufacture_employee_manger_rule" model="ir.model.access">
+        <field name="name">Admin permission</field>
+        <field name="perm_create">1</field>
+        <field name="perm_write">1</field>
+        <field name="perm_read">1</field>
+        <field name="perm_unlink">1</field>
+        <field name="model_id" ref="model_test_test"/>
+        <field name="group_id" ref="test.manufacture_employee_group_admin"/>
+    </record>
+
+<!--    <record id="record_rule_manufacture_employee_group_admin" model="ir.rule">-->
+<!--        <field name="name">Manufacture Employee Group Admin Rule</field>-->
+<!--        <field name="model_id" ref="model_test_test"/>-->
+<!--        <field name="groups" eval="[(4, ref('test.manufacture_employee_group_admin'))]"/>-->
+<!--        <field name="perm_read" eval="True"/>-->
+<!--        <field name="perm_write" eval="True"/>-->
+<!--        <field name="perm_create" eval="True"/>-->
+<!--        <field name="perm_unlink" eval="True"/>-->
+<!--    </record>-->
+
+    <!--    <record id="record_rule_manufacture_menu" model="ir.rule">-->
+    <!--        <field name="name">Manufacture Admin Menu Access Rule</field>-->
+    <!--        <field name="model_id" ref="test.menu_manufacture_menu_inherit"/>-->
+    <!--        <field name="groups" eval="[(4, ref('purchase.group_purchase_manager'))]"/>-->
+    <!--        <field name="perm_read" eval="True"/>-->
+    <!--        <field name="perm_write" eval="True"/>-->
+    <!--        <field name="perm_create" eval="True"/>-->
+    <!--        <field name="perm_unlink" eval="True"/>-->
+    <!--    </record>-->
+
+
+</odoo>
+
+
+        <!--if the user from purchas are Admin then somthing rule apply on this admin -->

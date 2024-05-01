@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Define XPath for modifying the existing web ribbon -->
+        <record id="view_sale_order_form_inherit" model="ir.ui.view">
+            <field name="name">sale.order.form.inherit</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//div[@class='oe_title']" position="inside">
+                    <!-- Add the web ribbon widget inside the div with class oe_title -->
+                     <widget name="web_ribbon" title="Archived" bg_color="bg-info"
+                            attrs="{'invisible': [('state', '!=', 'Quotation')]}"/>
+                    <widget name="web_ribbon" title="Quotation Sent" bg_color="bg-danger"
+                            attrs="{'invisible': [('state', '!=', 'sent')]}"/>
+                     <widget name="web_ribbon" title="Sales Order" bg_color="bg-success"
+                            attrs="{'invisible': [('state', '!=', 'sale')]}"/>
+                     <widget name="web_ribbon" title="Cancelled" bg_color="bg-dark"
+                            attrs="{'invisible': [('state', '!=', 'cancel')]}"/>
+                     <widget name="web_ribbon" title="done" bg_color="bg-success"
+                            attrs="{'invisible': [('state', '!=', 'done')]}"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>
+
+
+
+
+<!--        &lt;!&ndash; Add web_ribbon attribute to each button &ndash;&gt;-->
+<!--        <xpath expr="//button[@name='action_quotation_send']" position="attributes">-->
+<!--            <attribute name="web_ribbon">1</attribute>-->
+<!--        </xpath>-->
+<!--        <xpath expr="//button[@name='action_cancel']" position="attributes">-->
+<!--            <attribute name="web_ribbon">1</attribute>-->
+<!--        </xpath>-->
+<!--        <xpath expr="//button[@name='action_draft']" position="attributes">-->
+<!--            <attribute name="web_ribbon">1</attribute>-->
+<!--        </xpath>-->
+
+<!--        &lt;!&ndash; Add dynamic visibility conditions based on state &ndash;&gt;-->
+<!--        <xpath expr="//button[@name='action_cancel']" position="attributes">-->
+<!--            <attribute name="attrs">{'invisible': [('state', 'not in', ['draft', 'sent', 'sale'])]}</attribute>-->
+<!--        </xpath>-->
+<!--        <xpath expr="//button[@name='action_draft']" position="attributes">-->
+<!--            <attribute name="attrs">{'invisible': [('state', '!=', 'cancel')]}</attribute>-->
+<!--        </xpath>-->

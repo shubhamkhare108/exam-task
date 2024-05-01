@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<template id="product_price_inherit" inherit_id="website_sale.product_price">
+    <xpath expr="//span[hasclass('oe_price')]" position="attributes">
+<!--        <xpath expr="//div[hasclass('oe_kanban_bottom_left')]" position="inside">-->
+        <attribute name="style" >display:none;</attribute>
+        <form position="inside">
+            <button name="Price chek"/>
+        </form>
+    </xpath>
+</template>
+</odoo>
+
+
+<!--Approche for this
+
+1 try to in hide this
+2spam itemprop
+3add button on this
+4 action on the button so it will actlike discription
+-->
